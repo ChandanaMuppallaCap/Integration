@@ -2,51 +2,44 @@
 package com.tmobile.poc.vo;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.tmobile.poc.IConstants;
+
 
 @Component
-@Entity
-@Table(name = "Customer")
+@Document(collection = "customer")
 @JsonInclude(value = Include.NON_NULL)
 public class CustomerVO implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer customerId;
-	@Column(name = "phone_number", length = 20)
-	@NotNull
-	private String phoneNumber;
-	@Column(name = "first_number", length = 255)
-	@NotNull
-	private String firstName;
-	@Column(name = "last_number", length = 255)
-	@NotNull
-	private String lastName;
-	@Column(name = "ssn", length = 15)
-	private String ssn;
-	@Column(name = "dob", length = 15)
-	private String dob;
-	@Column(length = 15)
-	@JsonIgnore
-	private  Integer status;
 
-	public CustomerVO()
-	{
+	@Id
+	private Integer customerId;
+	private String phoneNumber;
+	private String firstName;
+	
+	private String lastName;
+	
+	private String ssn;
+	
+	private String dob;
+
+	@JsonIgnore
+	private Integer status;
+
+	public CustomerVO() {
 
 	}
 
@@ -105,32 +98,23 @@ public class CustomerVO implements Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
 	@Override
 	public String toString() {
-		return String.format("Customer[customerId=%d, phoneNumber=%s, firstName='%s', lastName='%s',ssn='%s',dob='%s',status='%d']",
-				customerId, phoneNumber, firstName, lastName, ssn, dob,status);
+		return String.format(
+				"Customer[customerId=%d, phoneNumber=%s, firstName='%s', lastName='%s',ssn='%s',dob='%s',status='%d']",
+				customerId, phoneNumber, firstName, lastName, ssn, dob, status);
 
 	}
 
-
-/*	public  String getStatusStr() {
-		String str = "";
-
-		System.out.println("Status with in"+this.status);
-		switch (this.status) {
-		case IConstants.ACTIVE:
-			str = IConstants.ACTIVE_STR;
-			break;
-		case IConstants.INACTIVE:
-			str = IConstants.INACTIVE_STR;
-			break;
-		}
-		return str;
-
-	}*/
-
-
+	/*
+	 * public String getStatusStr() { String str = "";
+	 * 
+	 * System.out.println("Status with in"+this.status); switch (this.status) {
+	 * case IConstants.ACTIVE: str = IConstants.ACTIVE_STR; break; case
+	 * IConstants.INACTIVE: str = IConstants.INACTIVE_STR; break; } return str;
+	 * 
+	 * }
+	 */
 
 }
-
-

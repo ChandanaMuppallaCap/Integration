@@ -1,14 +1,10 @@
 package com.tmobile.poc;
 
-import javax.annotation.PostConstruct;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import com.tmobile.poc.service.CustomerInfoService;
-import com.tmobile.poc.vo.CustomerInfoVO;
-import com.tmobile.poc.vo.CustomerVO;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;

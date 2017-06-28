@@ -1,6 +1,7 @@
 package com.tmobile.poc.controller;
 
 import java.net.HttpURLConnection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,7 +64,7 @@ public class CustomerController {
 	@ApiResponses(value = {
 			@ApiResponse(code = HttpURLConnection.HTTP_OK, message = "Customer Information is saved Sucessfully!"),
 			@ApiResponse(code = HttpURLConnection.HTTP_BAD_REQUEST, message = "Error Occurred while processing the request! ") })
-	@PutMapping(value = "/v1/customers/customer/update", produces = "application/json")
+	@PutMapping(value = "/v1/customers/customer/update/{phoneNumber}", produces = "application/json")
 	public ResponseEntity<?> updateCustomerInfo(@RequestBody(required=true) CustomerVO customer) {
 		if (customer != null && customer.getPhoneNumber() != null)
 			try {
